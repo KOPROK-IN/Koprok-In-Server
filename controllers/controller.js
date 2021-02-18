@@ -23,7 +23,7 @@ class Controller{
 				})
 			})
 			.catch( err => {
-				err.from = 'UserController - Register User'
+				err.from = 'Controller - Register User'
 				next(err)
 			})
   }
@@ -53,11 +53,45 @@ class Controller{
 
 			})
 			.catch( err => {
-				err.from = 'UserController - Login User'
+				err.from = 'Controller - Login User'
 				next(err)
 			})
-  }
+	}
+	
+	static updateMoney(req,res,next){
+		const { gamblingMoney } = req.body
 
+		console.log(gamblingMoney)
+
+		User.findOne({
+			where:{
+				id: req.user.id
+			}
+		})
+			.then( userData => {
+
+				if(!userData) throw { name: 'Custom', message: 'User does not exist', status: 404 }
+
+				let moneyNow = userData.dataValues.money + Number(gamblingMoney)
+
+				return User.update({ money: moneyNow },{ 
+						where:{
+							id: userData.dataValues.id
+					},returning: true
+				})
+			})
+			.then( userUpdate => {
+				res.status(200).json({
+					id: userUpdate[1][0].dataValues.id,
+					name: userUpdate[1][0].dataValues.email,
+					money: userUpdate[1][0].dataValues.money
+				})
+			})
+			.catch( err => {
+				err.from = 'Controller - Edit Money User'
+      	next(err)
+			})
+	}
 }
 
 module.exports = Controller

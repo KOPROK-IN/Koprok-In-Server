@@ -8,4 +8,6 @@ router.post('/login', Controller.login)
 
 router.use(authenticate)
 
+router.patch('/', Controller.updateMoney)
+
 module.exports = router
