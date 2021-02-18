@@ -32,7 +32,7 @@ Response:
 }
 ```
 
-Error Response
+Error Response:
 - 400 bad request
 - 500 internal server error
 
@@ -59,11 +59,18 @@ Response:
 }
 ```
 
-Error Response
+Error Response:
 - 400 bad request
 - 500 internal server error
 
 ### PATCH /
+
+Request 
+
+- header:
+```json
+  "access_token": "string"
+```
 
 - data:
 
@@ -85,14 +92,35 @@ Response:
 }
 ```
 
-Error Response
-- 400 bad request
+Error Response:
+- 401 Unauthorized
 - 404 Error Not Found
 - 500 internal server error
 
 ### GET /
 
-BELUM DILENGKAPI <<<<<<<<<<<>>>>>>>>>>>
+Request:
+
+- header:
+
+```json
+  "access_token": "string"
+```
+
+- status 200
+
+```json
+{
+  "id": "string",
+  "name": "string",
+  "money": "integer",
+  "email": "string"
+}
+```
+
+Error Response:
+- 401 Unauthorized
+- 500 internal server error
 
 ### ERROR RESPONSE DETAIL
 
