@@ -70,7 +70,7 @@ class Controller{
 		})
 			.then( userData => {
 
-				if(!userData) throw { name: 'Custom', message: 'User does not exist', status: 404 }
+				if(!userData) throw { name: 'Custom', message: 'Error Not Found', status: 404 }
 
 				let moneyNow = userData.dataValues.money + Number(gamblingMoney)
 
