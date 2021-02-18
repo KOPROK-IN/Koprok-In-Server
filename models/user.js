@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       beforeCreate: (user, opt) => {
         user.password = hashPass(user.password)
         user.name = Number(new Date())
-        user.money = 500000
+        user.money = 5000000
       }
     }
   });
