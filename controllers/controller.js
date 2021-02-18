@@ -49,7 +49,7 @@ class Controller{
           money: user.money
 				})
 
-				res.status(200).json({ access_token: token })
+				res.status(200).json({ access_token: token, name: user.name })
 
 			})
 			.catch( err => {
@@ -91,6 +91,20 @@ class Controller{
 				err.from = 'Controller - Edit Money User'
       	next(err)
 			})
+	}
+	static async getUser( req, res, next ) {
+		const email = req.user.email
+		try {
+			const user = await User.findOne({ where: { email } })
+			res.status(200).json({ 
+				id: user.id,
+				name: user.name,
+				money: user.money,
+				email: user.email
+			})
+		} catch (err) {
+			next(err)
+		}
 	}
 }
 
