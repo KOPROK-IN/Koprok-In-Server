@@ -49,7 +49,7 @@ class Controller{
           money: user.money
 				})
 
-				res.status(200).json({ access_token: token, name: user.name })
+				res.status(200).json({ access_token: token, name: user.name, email: user.email })
 
 			})
 			.catch( err => {
